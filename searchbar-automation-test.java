@@ -11,10 +11,11 @@ public class AutomationTest {
 
     static WebDriver driver;
 
-    String urlRebel = "https://www.rebel.pl/";
-    String searchedText = "/html/body/header/div[2]/div/nav/form/div[1]/input";
+    String firstUrl = "https://www.rebel.pl/";
+    String searchedTextBar = "/html/body/header/div[2]/div/nav/form/div[1]/input";
     String urlExpected = "https://www.rebel.pl/site/search?phrase=Nemesis";
-
+    String accecibilityBar = "/html/body/main/div[1]/div[1]/div[1]/form/div/div[3]/button";
+    String accebilityOptionInMagazine = "ui-id-1";
 
     @BeforeAll
     public static void setUp() {
@@ -23,11 +24,21 @@ public class AutomationTest {
     }
 
     @Test
-    public void iloscLinkowNaStronie() {
-        driver.navigate().to(urlRebel);
-        driver.findElement(By.xpath(searchedText)).sendKeys("Nemesis");
-        driver.findElement(By.xpath(searchedText)).sendKeys(Keys.ENTER);
-        Assertions.assertNotEquals(searchedText,urlExpected);
+    public void searchbarTest() {
+        driver.navigate().to(firstUrl);
+        driver.findElement(By.xpath(searchedTextBar)).sendKeys("Nemesis");
+        driver.findElement(By.xpath(searchedTextBar)).sendKeys(Keys.ENTER);
+        Assertions.assertNotEquals(searchedTextBar,urlExpected);
+
+        driver.findElement(By.xpath(accecibilityBar)).click();
+        driver.findElement(By.id(accebilityOptionInMagazine));
 
     }
+
+    @Test
+    public void subsearchbarTest(){
+
+    }
+
+
 }

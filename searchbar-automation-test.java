@@ -16,7 +16,8 @@ public class AutomationTest {
     String urlExpected = "https://www.rebel.pl/site/search?phrase=Nemesis";
     String accecibilityBar = "/html/body/main/div[1]/div[1]/div[1]/form/div/div[3]/button";
     String subSearchBarMenu = "ui-id-1";
-
+    String subSearchBarMenuList = "search-item search-item--product ui-menu-item-wrapper";
+    
     @BeforeAll
     public static void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:/Users/Adam/Documents/SELENIUM/chromedriver.exe");
@@ -39,6 +40,7 @@ public class AutomationTest {
         driver.navigate().to(firstUrl);
         driver.findElement(By.xpath(searchedTextBar)).sendKeys("Nemesis");
         driver.findElement(By.id(subSearchBarMenu));
+        Assertions.assertEquals(subSearchBarMenuList, subSearchBarMenuList);
     }
 
 

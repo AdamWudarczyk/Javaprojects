@@ -15,7 +15,7 @@ public class AutomationTest {
     String searchedTextBar = "/html/body/header/div[2]/div/nav/form/div[1]/input";
     String urlExpected = "https://www.rebel.pl/site/search?phrase=Nemesis";
     String accecibilityBar = "/html/body/main/div[1]/div[1]/div[1]/form/div/div[3]/button";
-    String accebilityOptionInMagazine = "ui-id-1";
+    String subSearchBarMenu = "ui-id-1";
 
     @BeforeAll
     public static void setUp() {
@@ -28,16 +28,17 @@ public class AutomationTest {
         driver.navigate().to(firstUrl);
         driver.findElement(By.xpath(searchedTextBar)).sendKeys("Nemesis");
         driver.findElement(By.xpath(searchedTextBar)).sendKeys(Keys.ENTER);
+        driver.findElement(By.xpath(accecibilityBar)).click();
         Assertions.assertNotEquals(searchedTextBar,urlExpected);
 
-        driver.findElement(By.xpath(accecibilityBar)).click();
-        driver.findElement(By.id(accebilityOptionInMagazine));
 
     }
 
     @Test
     public void subsearchbarTest(){
-
+        driver.navigate().to(firstUrl);
+        driver.findElement(By.xpath(searchedTextBar)).sendKeys("Nemesis");
+        driver.findElement(By.id(subSearchBarMenu));
     }
 
 

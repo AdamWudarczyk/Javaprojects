@@ -7,16 +7,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class AutomationTest {
+public class SearchbarAutomationTest {
 
     static WebDriver driver;
 
     String firstUrl = "https://www.rebel.pl/";
     String searchedTextBar = "/html/body/header/div[2]/div/nav/form/div[1]/input";
-    String urlExpected = "https://www.rebel.pl/site/search?phrase=Nemesis";
+    String firstUrlExpected = "https://www.rebel.pl/site/search?phrase=Nemesis";
+    String secondUrlExpected = "https://www.rebel.pl/site/search?phrase=robinson+crusoe";
     String accecibilityBar = "/html/body/main/div[1]/div[1]/div[1]/form/div/div[3]/button";
-    String subSearchBarMenu = "ui-id-1";
-    String subSearchBarMenuList = "search-item search-item--product ui-menu-item-wrapper";
+
 
     @BeforeAll
     public static void setUp() {
@@ -30,18 +30,16 @@ public class AutomationTest {
         driver.findElement(By.xpath(searchedTextBar)).sendKeys("Nemesis");
         driver.findElement(By.xpath(searchedTextBar)).sendKeys(Keys.ENTER);
         driver.findElement(By.xpath(accecibilityBar)).click();
-        Assertions.assertNotEquals(searchedTextBar,urlExpected);
+        Assertions.assertNotEquals(searchedTextBar,firstUrlExpected);
 
-
-    }
-
-    @Test
-    public void subsearchbarTest(){
         driver.navigate().to(firstUrl);
-        driver.findElement(By.xpath(searchedTextBar)).sendKeys("Nemesis");
-        driver.findElement(By.id(subSearchBarMenu));
-        Assertions.assertEquals(subSearchBarMenuList, subSearchBarMenuList);
-    }
+        driver.findElement(By.xpath(searchedTextBar)).sendKeys("Robinson Crusoe");
+        driver.findElement(By.xpath(searchedTextBar)).sendKeys(Keys.ENTER);
+        driver.findElement(By.xpath(accecibilityBar)).click();
+        Assertions.assertNotEquals(searchedTextBar,secondUrlExpected);
 
+        
+    }
+    
 
 }

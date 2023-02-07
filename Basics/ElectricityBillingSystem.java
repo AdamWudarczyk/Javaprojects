@@ -1,7 +1,7 @@
 package org.example;
 import java.util.Scanner;
 
-class Customer {
+public class Customer {
     int customerId;
     String customerName;
     int previousReading;

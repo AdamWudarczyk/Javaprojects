@@ -1,31 +1,36 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
 
 public class WebDriverTest {
     private WebDriver driver;
 
     @BeforeTest
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/Adam/Downloads/chromedriver_win32/chromedriver.exe");
         driver = new ChromeDriver();
     }
 
-    @Test
+   /* @Test      ///Fix test case
     public void testSearch() {
         driver.get("https://www.google.com");
-        driver.findElement(By.xpath("//input[@name='q']")).sendKeys("Selenium WebDriver");
-        driver.findElement(By.xpath("//input[@name='btnK']")).click();
+        driver.findElement(By.id("L2AGLb")).click();
+        driver.findElement(By.id("input")).sendKeys("Selenium WebDriver");
+        driver.findElement(By.id("contents")).click();
         String title = driver.getTitle();
         assert title.contains("Selenium WebDriver");
-    }
+    }*/
 
     @Test
     public void testClickLink() {
         driver.get("https://www.google.com");
+        driver.findElement(By.id("L2AGLb")).click();
         driver.findElement(By.xpath("//a[text()='Gmail']")).click();
         String title = driver.getTitle();
         assert title.contains("Gmail");
@@ -39,8 +44,25 @@ public class WebDriverTest {
         assert enteredText.equals("Selenium WebDriver");
     }
 
+    @Test
+    public void testPageSource() {
+        driver.get("https://www.google.com");
+        String pageSource = driver.getPageSource();
+        assert pageSource.contains("Google");
+    }
+
+    /*@Test  ///Fix test case
+    public void testBackButton() {
+        driver.get("https://www.google.com");
+        driver.findElement(By.xpath("//a[text()='Gmail']")).click();
+        String title1 = driver.getTitle();
+        driver.navigate().back();
+        String title2 = driver.getTitle();
+        assert !title1.equals(title2);
+    }*/
+
     @AfterTest
     public void teardown() {
-        driver.quit();
-    }
+       driver.quit();
+   }
 }

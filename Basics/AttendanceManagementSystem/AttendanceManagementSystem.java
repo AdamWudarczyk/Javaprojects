@@ -1,7 +1,7 @@
 package org.example;
 import java.util.Scanner;
 
-class Student {
+public class Student {
     int studentId;
     String studentName;
     int totalClasses;

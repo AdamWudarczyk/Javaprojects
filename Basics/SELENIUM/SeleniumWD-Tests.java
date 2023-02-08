@@ -62,6 +62,19 @@ public class WebDriverTest {
         assert !title1.equals(title2);
          }
 
+    @Test  //TC needs to be fixed
+    public void testLoginFailed() {
+        driver.get("https://www.google.com");
+        driver.findElement(By.id("L2AGLb")).click();
+        driver.findElement(By.xpath("//a[text()='Gmail']")).click();
+        driver.findElement(By.xpath("//a[text()='Zaloguj się']")).click();
+        driver.findElement(By.xpath("//input[@name='identifier']")).sendKeys("abcd");
+        driver.findElement(By.xpath("//input[@name='identifier']")).sendKeys(Keys.RETURN);
+        String loginfailed = driver.findElement(By.className("o6cuMc")).getAttribute("text");
+        assert loginfailed.equals("Nie możemy znaleźć takiego konta Google");
+    }
+
+    
     @AfterTest
     public void teardown() {
        driver.quit();

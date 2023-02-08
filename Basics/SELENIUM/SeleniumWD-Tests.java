@@ -51,15 +51,16 @@ public class WebDriverTest {
         assert pageSource.contains("Google");
     }
 
-    /*@Test  ///Fix test case
+    @Test
     public void testBackButton() {
         driver.get("https://www.google.com");
+        driver.findElement(By.id("L2AGLb")).click();
         driver.findElement(By.xpath("//a[text()='Gmail']")).click();
         String title1 = driver.getTitle();
         driver.navigate().back();
         String title2 = driver.getTitle();
         assert !title1.equals(title2);
-    }*/
+         }
 
     @AfterTest
     public void teardown() {

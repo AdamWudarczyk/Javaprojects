@@ -16,16 +16,16 @@ public class WebDriverTest {
         System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
         driver = new ChromeDriver();
     }
-
-   /* @Test      ///Fix test case
+    @Test
     public void testSearch() {
         driver.get("https://www.google.com");
         driver.findElement(By.id("L2AGLb")).click();
-        driver.findElement(By.id("input")).sendKeys("Selenium WebDriver");
-        driver.findElement(By.id("contents")).click();
-        String title = driver.getTitle();
-        assert title.contains("Selenium WebDriver");
-    }*/
+        driver.findElement(By.className("gLFyf")).click();
+        driver.findElement(By.className("gLFyf")).sendKeys("Selenium WebDriver");
+        driver.findElement(By.className("gLFyf")).sendKeys(Keys.RETURN);
+        String searchtitle = driver.getTitle();
+        assert searchtitle.contains("Selenium WebDriver");
+    }
 
     @Test
     public void testClickLink() {
